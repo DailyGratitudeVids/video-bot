@@ -1,0 +1,25 @@
+# .github/workflows/main.yml
+
+name: Run wholesome bot
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install FFmpeg
+      run: sudo apt update && sudo apt install -y ffmpeg
+    - name: Install Whisper
+      run: pip install git+https://github.com/openai/whisper.git
+    - name: Install requirements
+      run: pip install -r requirements.txt
+    - name: Run script
+      run: python main.py
