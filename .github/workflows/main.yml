@@ -23,3 +23,9 @@ jobs:
       run: pip install -r requirements.txt
     - name: Run script
       run: python main.py
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+        name: wholesome_video
+        path: final_video.mp4
+
